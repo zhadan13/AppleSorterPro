@@ -23,11 +23,13 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
+
 import java.awt.image.BufferedImage;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+
 import com.github.sarxos.webcam.Webcam;
 import com.jfoenix.controls.*;
 
@@ -41,15 +43,19 @@ public class ApplicationGui extends javafx.application.Application {
         public String getWebCamName() {
             return webCamName;
         }
+
         public void setWebCamName(String webCamName) {
             this.webCamName = webCamName;
         }
+
         public int getWebCamIndex() {
             return webCamIndex;
         }
+
         public void setWebCamIndex(int webCamIndex) {
             this.webCamIndex = webCamIndex;
         }
+
         @Override
         public String toString() {
             return webCamName;
@@ -57,9 +63,9 @@ public class ApplicationGui extends javafx.application.Application {
     }
 
     private final VBox topPane = new VBox(5);
-    private final FlowPane top1Pane = new FlowPane(30,20);
-    private final FlowPane top2Pane = new FlowPane(30,20);
-    private final FlowPane topSecurityPane = new FlowPane(30,20);
+    private final FlowPane top1Pane = new FlowPane(30, 20);
+    private final FlowPane top2Pane = new FlowPane(30, 20);
+    private final FlowPane topSecurityPane = new FlowPane(30, 20);
     private final VBox bottomPane = new VBox(1);
     private final BorderPane cameraPane = new BorderPane();
     private final BorderPane rootPane = new BorderPane();
@@ -110,7 +116,7 @@ public class ApplicationGui extends javafx.application.Application {
     private final JFXPasswordField passwordField = new JFXPasswordField();
 
     private final Separator separator0 = new Separator(Orientation.HORIZONTAL);
-    private final BoxBlur blur = new BoxBlur(5,5,1);
+    private final BoxBlur blur = new BoxBlur(5, 5, 1);
 
     private volatile int position = 0;
     private final ArduinoClass arduino = new ArduinoClass();
@@ -139,7 +145,7 @@ public class ApplicationGui extends javafx.application.Application {
         createBottomPanel();
         rootPane.setBottom(bottomPane);
 
-        BackgroundImage backgroundImage = new BackgroundImage(new Image("file:src/main/resources/wallpaper/mainBackground.jpg", 1920,1080, true, true), BackgroundRepeat.SPACE, BackgroundRepeat.SPACE, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("file:src/main/resources/wallpaper/mainBackground.jpg", 1920, 1080, true, true), BackgroundRepeat.SPACE, BackgroundRepeat.SPACE, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         mainPane.setBackground(new Background(backgroundImage));
         mainPane.getChildren().add(rootPane);
 
@@ -245,20 +251,20 @@ public class ApplicationGui extends javafx.application.Application {
         bottomPane.setDisable(true);
 
         cameraStatusLabel.setVisible(false);
-        cameraStatusLabel.setPrefSize(32,32);
+        cameraStatusLabel.setPrefSize(32, 32);
         cameraStatusLabel.setGraphic(new ImageView("file:src/main/resources/wallpaper/cameralive.png"));
         Tooltip cameraStatusLabelTooltip = new Tooltip("Camera is in action!");
         cameraStatusLabelTooltip.setGraphic(new ImageView("file:src/main/resources/wallpaper/cameraStatusLabelTooltip.png"));
         cameraStatusLabel.setTooltip(cameraStatusLabelTooltip);
 
         runIndicator.setVisible(false);
-        runIndicator.setPrefSize(32,32);
+        runIndicator.setPrefSize(32, 32);
         Tooltip runIndicatorTooltip = new Tooltip("Scanning is in action!");
         runIndicatorTooltip.setGraphic(new ImageView("file:src/main/resources/wallpaper/runIndicatorTooltip.png"));
         runIndicator.setTooltip(runIndicatorTooltip);
 
         currentApple.setVisible(false);
-        currentApple.setPrefSize(32,32);
+        currentApple.setPrefSize(32, 32);
         Tooltip currentAppleTooltip = new Tooltip("Current apple in camera!");
         currentAppleTooltip.setGraphic(new ImageView("file:src/main/resources/wallpaper/currentAppleTooltip.png"));
         currentApple.setTooltip(currentAppleTooltip);
@@ -273,8 +279,7 @@ public class ApplicationGui extends javafx.application.Application {
                 cameraStatus.setText("Turn OFF camera");
                 cameraStatusLabel.setVisible(true);
                 startWebCamCamera();
-            }
-            else {
+            } else {
                 cameraStatus.setText("Turn ON camera");
                 cameraStatusLabel.setVisible(false);
                 stopWebCamCamera();
@@ -301,8 +306,7 @@ public class ApplicationGui extends javafx.application.Application {
                 scanStatus.setText("Stop scanning");
                 runIndicator.setVisible(true);
                 startScan();
-            }
-            else {
+            } else {
                 scanStatus.setText("Start scanning");
                 runIndicator.setVisible(false);
                 stopScan();
@@ -326,8 +330,7 @@ public class ApplicationGui extends javafx.application.Application {
                 themeIconTooltip.setText("Dark theme!");
                 themeIconTooltip.setGraphic(new ImageView("file:src/main/resources/wallpaper/themeIconTooltipDark.png"));
                 setDarkTheme();
-            }
-            else {
+            } else {
                 themeIconTooltip.setText("Bright theme!");
                 themeIconTooltip.setGraphic(new ImageView("file:src/main/resources/wallpaper/themeIconTooltipBright.png"));
                 setBrightTheme();
@@ -354,9 +357,9 @@ public class ApplicationGui extends javafx.application.Application {
         topSecurityPane.getChildren().add(passwordField);
         topSecurityPane.setAlignment(Pos.CENTER);
 
-        labelApples.setPrefSize(150,20);
+        labelApples.setPrefSize(150, 20);
         applesProgressBar.setPrefWidth(120);
-        labelApplesCount.setPrefSize(150,20);
+        labelApplesCount.setPrefSize(150, 20);
         applesProgressBar.getStylesheets().add("progressBarApples.css");
         labelApples.setAlignment(Pos.CENTER);
         labelApplesCount.setAlignment(Pos.CENTER);
@@ -368,9 +371,9 @@ public class ApplicationGui extends javafx.application.Application {
         applesProgressBar.setTooltip(applesTooltip);
         labelApplesCount.setTooltip(applesTooltip);
 
-        labelGreen.setPrefSize(150,20);
+        labelGreen.setPrefSize(150, 20);
         greenProgressBar.setPrefWidth(120);
-        labelGreenCount.setPrefSize(150,20);
+        labelGreenCount.setPrefSize(150, 20);
         greenProgressBar.getStylesheets().add("progressBarGreen.css");
         labelGreen.setAlignment(Pos.CENTER);
         labelGreenCount.setAlignment(Pos.CENTER);
@@ -382,9 +385,9 @@ public class ApplicationGui extends javafx.application.Application {
         greenProgressBar.setTooltip(applesGreenTooltip);
         labelGreenCount.setTooltip(applesGreenTooltip);
 
-        labelRed.setPrefSize(150,20);
+        labelRed.setPrefSize(150, 20);
         redProgressBar.setPrefWidth(120);
-        labelRedCount.setPrefSize(150,20);
+        labelRedCount.setPrefSize(150, 20);
         redProgressBar.getStylesheets().add("progressBarRed.css");
         labelRed.setAlignment(Pos.CENTER);
         labelRedCount.setAlignment(Pos.CENTER);
@@ -396,7 +399,7 @@ public class ApplicationGui extends javafx.application.Application {
         redProgressBar.setTooltip(applesRedTooltip);
         labelRedCount.setTooltip(applesRedTooltip);
 
-        cleanStat.setPrefSize(130,30);
+        cleanStat.setPrefSize(130, 30);
         cleanStat.setStyle("-jfx-button-type: RAISED; -fx-background-color: rgb(160, 160, 160)");
         Tooltip clearButtonTooltip = new Tooltip("Clear all statistics: number of apples and time");
         clearButtonTooltip.setGraphic(new ImageView("file:src/main/resources/wallpaper/clearButtonTooltip.png"));
@@ -424,7 +427,7 @@ public class ApplicationGui extends javafx.application.Application {
         bottom1Label.setStyle("-fx-font-size: 16px");
         bottom2Label.setStyle("-fx-font-size: 13px");
         bottom3Label.setStyle("-fx-font-size: 13px");
-        bottom2Label.setPadding(new Insets(5,0,0,0));
+        bottom2Label.setPadding(new Insets(5, 0, 0, 0));
         bottom1Label.setGraphic(new ImageView("file:src/main/resources/wallpaper/apple.png"));
         bottomPane.getChildren().addAll(bottom1Label, bottom2Label, bottom3Label);
         bottomPane.setAlignment(Pos.CENTER);
@@ -436,17 +439,20 @@ public class ApplicationGui extends javafx.application.Application {
         BooleanProperty running = new SimpleBooleanProperty();
         return new AnimationTimer() {
             private long startTime;
+
             @Override
             public void start() {
                 startTime = System.currentTimeMillis();
                 running.set(true);
                 super.start();
             }
+
             @Override
             public void stop() {
                 running.set(false);
                 super.stop();
             }
+
             @Override
             public void handle(long timestamp) {
                 long now = System.currentTimeMillis();
@@ -601,8 +607,7 @@ public class ApplicationGui extends javafx.application.Application {
         labelRedCount.setText(String.valueOf(counterRed));
         if (!stopScan) {
             timer.start();
-        }
-        else {
+        } else {
             timer = timer();
         }
     }
@@ -635,15 +640,14 @@ public class ApplicationGui extends javafx.application.Application {
         char[] password = passwordField.getText().toCharArray();
         if (Encryption.encrypting(password)) {
             initializeProject();
-        }
-        else {
-            BoxBlur blur0 = new BoxBlur(10,10,2);
+        } else {
+            BoxBlur blur0 = new BoxBlur(10, 10, 2);
             JFXDialogLayout dialogLayout = new JFXDialogLayout();
             JFXButton dialogButton = new JFXButton("OK");
             JFXDialog dialog = new JFXDialog(mainPane, dialogLayout, JFXDialog.DialogTransition.CENTER);
             dialogLayout.setBody(new Label("Wrong password, please re-enter."));
             dialogLayout.setActions(dialogButton);
-            dialogButton.setPrefSize(100,30);
+            dialogButton.setPrefSize(100, 30);
             dialogButton.setStyle("-jfx-button-type: RAISED; -fx-background-color: rgb(160, 160, 160)");
             dialogButton.setOnAction(event -> dialog.close());
             dialog.setOverlayClose(true);
@@ -678,5 +682,4 @@ public class ApplicationGui extends javafx.application.Application {
     public static void main(String[] args) {
         LauncherImpl.launchApplication(ApplicationGui.class, MyPreloader.class, args);
     }
-
 }

@@ -4,21 +4,21 @@ import arduino.Arduino;
 
 public final class ArduinoClass {
 
-    private final Arduino arduino = new Arduino("COM3", 9600);
+    private final Arduino arduino;
 
     public ArduinoClass() {
-
+        this.arduino = new Arduino("COM3", 9600);
     }
 
-    protected void arduinoMessage(final char message) {
+    public void arduinoMessage(final char message) {
         arduino.serialWrite(message);
     }
 
-    protected void arduinoOpenConnection() {
+    public void arduinoOpenConnection() {
         arduino.openConnection();
     }
 
-    protected void arduinoCloseConnection() {
+    public void arduinoCloseConnection() {
         arduino.closeConnection();
     }
 

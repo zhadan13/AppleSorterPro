@@ -8,17 +8,13 @@ import java.awt.image.BufferedImage;
 public class Application {
 
     private static BufferedImage image;
-    protected static volatile int result;
-
-    public static void main(String[] args) {
-
-    }
+    public static volatile int result;
 
     private static void setImage() {
         image = ApplicationGui.grabbedImage();
     }
 
-    protected static int result() {
+    public static int result() {
         setImage();
 
         int height = image.getHeight();
@@ -50,20 +46,20 @@ public class Application {
 
     private static int[] getMostCommonColor(Map<Integer, Integer> map) {
         if (map.isEmpty()) {
-            return new int[] {0, 0, 0};
+            return new int[]{0, 0, 0};
         }
         LinkedList<Map.Entry<Integer, Integer>> colorList = new LinkedList<>(map.entrySet());
         colorList.sort((o1, o2) -> ((Comparable<Integer>) o1.getValue()).compareTo(o2.getValue()));
         Map.Entry<Integer, Integer> mapEntry = colorList.get(colorList.size() - 1);
         int[] rgb = getRGBArr(mapEntry.getKey());
-        return new int[] {rgb[0], rgb[1], rgb[2]};
+        return new int[]{rgb[0], rgb[1], rgb[2]};
     }
 
     private static int[] getRGBArr(final int pixel) {
         int red = (pixel >> 16) & 0xff;
         int green = (pixel >> 8) & 0xff;
         int blue = (pixel) & 0xff;
-        return new int[] {red, green, blue};
+        return new int[]{red, green, blue};
     }
 
     private static boolean isGray(final int[] rgbArr) {
@@ -81,20 +77,17 @@ public class Application {
         b = B / 255.0;
         if (r <= 0.04045) {
             r = r / 12.92;
-        }
-        else {
+        } else {
             r = Math.pow((r + 0.055) / 1.055, 2.4);
         }
         if (g <= 0.04045) {
             g = g / 12.92;
-        }
-        else {
+        } else {
             g = Math.pow((g + 0.055) / 1.055, 2.4);
         }
         if (b <= 0.04045) {
             b = b / 12.92;
-        }
-        else {
+        } else {
             b = Math.pow((b + 0.055) / 1.055, 2.4);
         }
         r *= 100.;
@@ -108,27 +101,24 @@ public class Application {
         zr = Z / 108.883;
         if (xr > 0.008856) {
             xr = Math.pow(xr, (1. / 3.));
-        }
-        else {
+        } else {
             xr = (7.787 * xr) + (16. / 116.);
         }
         if (yr > 0.008856) {
             yr = Math.pow(yr, (1. / 3.));
-        }
-        else {
+        } else {
             yr = (7.787 * yr) + (16. / 116.);
         }
         if (zr > 0.008856) {
             zr = Math.pow(zr, (1. / 3.));
-        }
-        else {
+        } else {
             zr = (7.787 * zr) + (16. / 116.);
         }
         Ls = (116. * yr) - 16.;
         as = 500. * (xr - yr);
         bs = 200. * (yr - zr);
 
-        return new int[] {(int) Ls, (int) as, (int) bs};
+        return new int[]{(int) Ls, (int) as, (int) bs};
     }
 
     private static int what(final int A, final int B) {
@@ -140,5 +130,4 @@ public class Application {
         }
         return 1;
     }
-
 }

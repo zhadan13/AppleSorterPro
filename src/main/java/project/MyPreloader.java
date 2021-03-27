@@ -2,6 +2,7 @@ package project;
 
 import java.io.File;
 import java.net.URL;
+
 import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +18,7 @@ public class MyPreloader extends Preloader {
 
     @Override
     public void init() throws Exception {
-        URL url = new File("src/main/java/project/splashScreen.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/splashScreen.fxml").toURI().toURL();
         Parent preloaderRootPane = FXMLLoader.load(url);
         preloaderScene = new Scene(preloaderRootPane);
     }
@@ -34,7 +35,7 @@ public class MyPreloader extends Preloader {
     @Override
     public void handleApplicationNotification(Preloader.PreloaderNotification info) {
         if (info instanceof ProgressNotification) {
-            project.FXMLDocumentController.statProgressBar.setProgress(((ProgressNotification)info).getProgress());
+            project.FXMLDocumentController.statProgressBar.setProgress(((ProgressNotification) info).getProgress());
         }
     }
 
